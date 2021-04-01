@@ -1,69 +1,540 @@
-%%
-% 参考文献
-% 参考文献是毕业设计(论文)不可缺少的组成部分,它反映毕业设计(论文)的取材来源、材料的广博程度和材料的可靠程度,也是作者对他人知识成果的承认和尊重。一份完整的参考文献可向读者提供一份有价值的信息资料,列入的文献应在 10 篇以上,其中外文文献在 2 篇以上。
-%%
 
-@inproceedings{chen14semantic,
-  title     = {Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs},
-  author    = {Liang-Chieh Chen and George Papandreou and Iasonas Kokkinos and Kevin Murphy and Alan L Yuille},
-  booktitle = {ICLR},
-  url       = {http://arxiv.org/abs/1412.7062},
-  year      = {2015}
+@book{bertsekasReinforcementLearningOptimal2019,
+  title = {Reinforcement Learning and Optimal Control},
+  author = {Bertsekas, Dimitri P},
+  year = {2019},
+  abstract = {"This book explores the common boundary between optimal control and artificial intelligence, as it relates to reinforcement learning and simulation-based neural network methods. These are popular fields with many applications, which can provide approximate solutions to challenging sequential decision problems and large-scale dynamic programming (DP). The aim of the book is to organize coherently the broad mosaic of methods in these fields, which have a solid analytical and logical foundation, and have also proved successful in practice"--OhioLink Library Catalog.},
+  annotation = {OCLC: 1151095080},
+  file = {E\:\\Zotero\\storage\\5NUUG7JK\\Bertsekas_2019_Reinforcement learning and optimal control.pdf;E\:\\Zotero\\storage\\B5MIQSD5\\RL_CH1_ROLLOUT_CLASS_NOTES.pdf},
+  isbn = {978-1-886529-39-7},
+  keywords = {math-thesis},
+  language = {English}
 }
 
-@incollection{hariharan2014simultaneous,
-  title     = {Simultaneous detection and segmentation},
-  author    = {Hariharan, Bharath and Arbel{\'a}ez, Pablo and Girshick, Ross and Malik, Jitendra},
-  booktitle = {Computer vision--ECCV 2014},
-  pages     = {297--312},
-  year      = {2014},
-  publisher = {Springer}
+@misc{dimitrip.bertsekasREINFORCEMENTLEARNINGOPTIMAL,
+  title = {{{REINFORCEMENT LEARNING AND OPTIMAL CONTROL}}},
+  author = {{Dimitri P. Bertsekas}},
+  howpublished = {https://web.mit.edu/dimitrib/www/RLbook.html},
+  keywords = {math-thesis}
 }
-@article{liu2011sift,
-  title     = {Sift flow: Dense correspondence across scenes and its applications},
-  author    = {Liu, Ce and Yuen, Jenny and Torralba, Antonio},
-  journal   = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
-  volume    = {33},
-  number    = {5},
-  pages     = {978--994},
-  year      = {2011},
-  publisher = {IEEE}
+
+@article{duanRLFastReinforcement2016,
+  title = {{{RL}}\$\^2\$: {{Fast Reinforcement Learning}} via {{Slow Reinforcement Learning}}},
+  shorttitle = {{{RL}}\$\^2\$},
+  author = {Duan, Yan and Schulman, John and Chen, Xi and Bartlett, Peter L. and Sutskever, Ilya and Abbeel, Pieter},
+  year = {2016},
+  month = nov,
+  abstract = {Deep reinforcement learning (deep RL) has been successful in learning sophisticated behaviors automatically; however, the learning process requires a huge number of trials. In contrast, animals can learn new tasks in just a few trials, benefiting from their prior knowledge about the world. This paper seeks to bridge this gap. Rather than designing a "fast" reinforcement learning algorithm, we propose to represent it as a recurrent neural network (RNN) and learn it from data. In our proposed method, RL\$\^2\$, the algorithm is encoded in the weights of the RNN, which are learned slowly through a general-purpose ("slow") RL algorithm. The RNN receives all information a typical RL algorithm would receive, including observations, actions, rewards, and termination flags; and it retains its state across episodes in a given Markov Decision Process (MDP). The activations of the RNN store the state of the "fast" RL algorithm on the current (previously unseen) MDP. We evaluate RL\$\^2\$ experimentally on both small-scale and large-scale problems. On the small-scale side, we train it to solve randomly generated multi-arm bandit problems and finite MDPs. After RL\$\^2\$ is trained, its performance on new MDPs is close to human-designed algorithms with optimality guarantees. On the large-scale side, we test RL\$\^2\$ on a vision-based navigation task and show that it scales up to high-dimensional problems.},
+  archiveprefix = {arXiv},
+  eprint = {1611.02779},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\642IFFSG\\Duan et al_2016_RL$^2$.pdf;E\:\\Zotero\\storage\\B2I53VWE\\1611.html},
+  journal = {arXiv:1611.02779 [cs, stat]},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing,math-thesis,MRL,Statistics - Machine Learning},
+  primaryclass = {cs, stat}
 }
-@inproceedings{long2015fully,
-  title     = {Fully convolutional networks for semantic segmentation},
-  author    = {Long, Jonathan and Shelhamer, Evan and Darrell, Trevor},
-  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  pages     = {3431--3440},
-  year      = {2015}
+
+@inproceedings{finnModelagnosticMetalearningFast2017,
+  title = {Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks},
+  booktitle = {International {{Conference}} on {{Machine Learning}}},
+  author = {Finn, Chelsea and Abbeel, Pieter and Levine, Sergey},
+  year = {2017},
+  pages = {1126--1135},
+  publisher = {{PMLR}},
+  file = {E\:\\Zotero\\storage\\4DDA95ZN\\Finn et al_2017_Model-agnostic meta-learning for fast adaptation of deep networks.pdf;E\:\\Zotero\\storage\\BWSJT4RS\\finn17a.html},
+  keywords = {_to_do,math-thesis}
 }
+
+@article{goldwaserDeepReinforcementLearning2020,
+  title = {Deep {{Reinforcement Learning}} for {{General Game Playing}}},
+  author = {Goldwaser, Adrian and Thielscher, Michael},
+  year = {2020},
+  month = apr,
+  volume = {34},
+  pages = {1701--1708},
+  issn = {2374-3468},
+  doi = {10/ghtstj},
+  copyright = {Copyright (c) 2020 Association for the Advancement of Artificial Intelligence},
+  file = {E\:\\Zotero\\storage\\VW62JKGI\\Goldwaser_Thielscher_2020_Deep Reinforcement Learning for General Game Playing.pdf;E\:\\Zotero\\storage\\65YNNWKV\\5533.html},
+  journal = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  keywords = {_to_do,AAAI,AAAI 2020,math-thesis},
+  language = {en},
+  number = {02}
+}
+
+@book{goodfellowDeepLearning2016,
+  title = {Deep Learning},
+  author = {Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron},
+  year = {2016},
+  publisher = {{The MIT Press}},
+  address = {{Cambridge, Massachusetts}},
+  file = {E\:\\Zotero\\storage\\4ZI38LM4\\Goodfellow et al_2016_Deep learning.pdf;E\:\\Zotero\\storage\\PV23UX6I\\Deep Learning.pdf},
+  isbn = {978-0-262-03561-3},
+  keywords = {_to_read,Machine learning,math-thesis},
+  lccn = {Q325.5 .G66 2016},
+  series = {Adaptive Computation and Machine Learning}
+}
+
+@article{hastingsMonteCarloSampling1970,
+  title = {Monte {{Carlo}} Sampling Methods Using {{Markov}} Chains and Their Applications},
+  author = {Hastings, W. K.},
+  year = {1970},
+  month = apr,
+  volume = {57},
+  pages = {97--109},
+  issn = {0006-3444},
+  doi = {10/dkbmcf},
+  abstract = {A generalization of the sampling method introduced by Metropolis et al. (1953) is presented along with an exposition of the relevant theory, techniques of application and methods and difficulties of assessing the error in Monte Carlo estimates. Examples of the methods, including the generation of random orthogonal matrices and potential applications of the methods to numerical problems arising in statistics, are discussed.},
+  file = {E\:\\Zotero\\storage\\JU4MRI5R\\Hastings_1970_Monte Carlo sampling methods using Markov chains and their applications.pdf;E\:\\Zotero\\storage\\WNW3WYQI\\284580.html},
+  journal = {Biometrika},
+  keywords = {math-thesis},
+  number = {1}
+}
+
+@article{hesselRainbowCombiningImprovements2018,
+  title = {Rainbow: {{Combining Improvements}} in {{Deep Reinforcement Learning}}},
+  shorttitle = {Rainbow},
+  author = {Hessel, Matteo and Modayil, Joseph and van Hasselt, Hado and Schaul, Tom and Ostrovski, Georg and Dabney, Will and Horgan, Dan and Piot, Bilal and Azar, Mohammad and Silver, David},
+  year = {2018},
+  month = apr,
+  volume = {32},
+  issn = {2374-3468},
+  copyright = {Copyright (c)},
+  file = {E\:\\Zotero\\storage\\7LMC3E3R\\Hessel et al_2018_Rainbow.pdf;E\:\\Zotero\\storage\\36YMFG3F\\11796.html},
+  journal = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  keywords = {deep reinforcement learning,math-thesis},
+  language = {en},
+  number = {1}
+}
+
+@misc{irpanDeepReinforcementLearning2018,
+  title = {Deep {{Reinforcement Learning Doesn}}'t {{Work Yet}}},
+  author = {{Irpan} and {Alex}},
+  year = {2018},
+  abstract = {June 24, 2018 note: If you want to cite an example from the post, please cite the paper which that example came from. If you want to cite the post as a whole, you can use the following BibTeX:},
+  file = {E\:\\Zotero\\storage\\T4PK3I9W\\rl-hard.html},
+  howpublished = {http://www.alexirpan.com/2018/02/14/rl-hard.html},
+  keywords = {math-thesis}
+}
+
+@inproceedings{kirschImprovingGeneralizationMeta2019,
+  title = {Improving {{Generalization}} in {{Meta Reinforcement Learning}} Using {{Learned Objectives}}},
+  booktitle = {International {{Conference}} on {{Learning Representations}}},
+  author = {Kirsch, Louis and van Steenkiste, Sjoerd and Schmidhuber, Juergen},
+  year = {2019},
+  month = sep,
+  abstract = {We introduce MetaGenRL, a novel meta reinforcement learning algorithm. Unlike prior work, MetaGenRL can generalize to new environments that are entirely different from those used for meta-training.},
+  file = {E\:\\Zotero\\storage\\FKI2NYJY\\Kirsch et al_2019_Improving Generalization in Meta Reinforcement Learning using Learned Objectives.pdf;E\:\\Zotero\\storage\\IMMCVVAB\\forum.html},
+  keywords = {math-thesis},
+  language = {en}
+}
+
+@article{lillicrapContinuousControlDeep2019,
+  title = {Continuous Control with Deep Reinforcement Learning},
+  author = {Lillicrap, Timothy P. and Hunt, Jonathan J. and Pritzel, Alexander and Heess, Nicolas and Erez, Tom and Tassa, Yuval and Silver, David and Wierstra, Daan},
+  year = {2019},
+  month = jul,
+  abstract = {We adapt the ideas underlying the success of Deep Q-Learning to the continuous action domain. We present an actor-critic, model-free algorithm based on the deterministic policy gradient that can operate over continuous action spaces. Using the same learning algorithm, network architecture and hyper-parameters, our algorithm robustly solves more than 20 simulated physics tasks, including classic problems such as cartpole swing-up, dexterous manipulation, legged locomotion and car driving. Our algorithm is able to find policies whose performance is competitive with those found by a planning algorithm with full access to the dynamics of the domain and its derivatives. We further demonstrate that for many of the tasks the algorithm can learn policies ``end-to-end'': directly from raw pixel inputs.},
+  archiveprefix = {arXiv},
+  eprint = {1509.02971},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\YNS694HC\\Lillicrap et al. - 2019 - Continuous control with deep reinforcement learning.pdf},
+  journal = {arXiv:1509.02971 [cs, stat]},
+  keywords = {⛔ No DOI found,Computer Science - Machine Learning,math-thesis,Statistics - Machine Learning},
+  language = {en},
+  primaryclass = {cs, stat}
+}
+
+@article{liujianweiJiYuZhiHanShuHeCeLueTiDuDeShenDuQiangHuaXueXiZongShu2019,
+  title = {基于值函数和策略梯度的深度强化学习综述},
+  author = {{刘建伟} and {高峰} and {罗雄麟}},
+  year = {2019},
+  volume = {42},
+  pages = {1406--1438},
+  publisher = {{中国计算机学会| 中国科学院计算技术研究所}},
+  file = {E\:\\Zotero\\storage\\7YF2GNRV\\刘建伟 et al_2019_基于值函数和策略梯度的深度强化学习综述.pdf},
+  journal = {计算机学报},
+  keywords = {_to_do,math-thesis},
+  number = {6}
+}
+
+@inproceedings{mnihAsynchronousMethodsDeep2016,
+  title = {Asynchronous {{Methods}} for {{Deep Reinforcement Learning}}},
+  booktitle = {International {{Conference}} on {{Machine Learning}}},
+  author = {Mnih, Volodymyr and Badia, Adria Puigdomenech and Mirza, Mehdi and Graves, Alex and Lillicrap, Timothy and Harley, Tim and Silver, David and Kavukcuoglu, Koray},
+  year = {2016},
+  month = jun,
+  pages = {1928--1937},
+  publisher = {{PMLR}},
+  issn = {1938-7228},
+  abstract = {We propose a conceptually simple and lightweight framework for deep reinforcement learning that uses asynchronous gradient descent for optimization of deep neural network controllers. We present as...},
+  file = {E\:\\Zotero\\storage\\IENIJIMW\\Mnih et al_2016_Asynchronous Methods for Deep Reinforcement Learning.pdf;E\:\\Zotero\\storage\\I7XEBD4Z\\mniha16.html},
+  keywords = {_to_do,math-thesis},
+  language = {en}
+}
+
+@article{mnihHumanlevelControlDeep2015,
+  title = {Human-Level Control through Deep Reinforcement Learning},
+  author = {Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and Rusu, Andrei A. and Veness, Joel and Bellemare, Marc G. and Graves, Alex and Riedmiller, Martin and Fidjeland, Andreas K. and Ostrovski, Georg},
+  year = {2015},
+  volume = {518},
+  pages = {529--533},
+  publisher = {{Nature Publishing Group}},
+  doi = {10/gc3h75},
+  file = {E\:\\Zotero\\storage\\P8TR5G3V\\Mnih et al_2015_Human-level control through deep reinforcement learning.pdf;E\:\\Zotero\\storage\\MJAR3N24\\nature14236.html},
+  journal = {nature},
+  keywords = {math-thesis},
+  number = {7540}
+}
+
+@article{mnihPlayingAtariDeep2013,
+  title = {Playing {{Atari}} with {{Deep Reinforcement Learning}}},
+  author = {Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and Graves, Alex and Antonoglou, Ioannis and Wierstra, Daan and Riedmiller, Martin},
+  year = {2013},
+  month = dec,
+  abstract = {We present the first deep learning model to successfully learn control policies directly from high-dimensional sensory input using reinforcement learning. The model is a convolutional neural network, trained with a variant of Q-learning, whose input is raw pixels and whose output is a value function estimating future rewards. We apply our method to seven Atari 2600 games from the Arcade Learning Environment, with no adjustment of the architecture or learning algorithm. We find that it outperforms all previous approaches on six of the games and surpasses a human expert on three of them.},
+  archiveprefix = {arXiv},
+  eprint = {1312.5602},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\VG77NEXA\\Mnih et al. - 2013 - Playing Atari with Deep Reinforcement Learning.pdf},
+  journal = {arXiv:1312.5602 [cs]},
+  keywords = {_to_do,⛔ No DOI found,Computer Science - Machine Learning,math-thesis,NeurIPS,NeurIPS 2013},
+  language = {en},
+  primaryclass = {cs}
+}
+
+@inproceedings{narasimhanLanguageUnderstandingTextbased2015,
+  title = {Language {{Understanding}} for {{Text}}-Based {{Games}} Using {{Deep Reinforcement Learning}}},
+  booktitle = {Proceedings of the 2015 {{Conference}} on {{Empirical Methods}} in {{Natural Language Processing}}},
+  author = {Narasimhan, Karthik and Kulkarni, Tejas and Barzilay, Regina},
+  year = {2015},
+  pages = {1--11},
+  doi = {10/ght9db},
+  file = {E\:\\Zotero\\storage\\MTXA933T\\Narasimhan et al_2015_Language Understanding for Text-based Games using Deep Reinforcement Learning.pdf},
+  keywords = {math-thesis}
+}
+
+@article{ohDiscoveringReinforcementLearning2020,
+  title = {Discovering {{Reinforcement Learning Algorithms}}},
+  author = {Oh, Junhyuk and Hessel, Matteo and Czarnecki, Wojciech M. and Xu, Zhongwen and {van Hasselt}, Hado P. and Singh, Satinder and Silver, David},
+  year = {2020},
+  volume = {33},
+  file = {E\:\\Zotero\\storage\\9GQ8VJGQ\\Oh et al_2020_Discovering Reinforcement Learning Algorithms.pdf;E\:\\Zotero\\storage\\K928L6BS\\Supplemental.pdf;E\:\\Zotero\\storage\\CSAP33BJ\\0b96d81f0494fde5428c7aea243c9157-Abstract.html},
+  journal = {Advances in Neural Information Processing Systems},
+  keywords = {_have_read,_to_do,math-thesis,NeurIPS,NeurIPS 2020},
+  language = {en}
+}
+
+@inproceedings{osbandBehaviourSuiteReinforcement2019,
+  title = {Behaviour {{Suite}} for {{Reinforcement Learning}}},
+  booktitle = {International {{Conference}} on {{Learning Representations}}},
+  author = {Osband, Ian and Doron, Yotam and Hessel, Matteo and Aslanides, John and Sezener, Eren and Saraiva, Andre and McKinney, Katrina and Lattimore, Tor and Szepesvari, Csaba and Singh, Satinder and Roy, Benjamin Van and Sutton, Richard and Silver, David and Hasselt, Hado Van},
+  year = {2019},
+  month = sep,
+  abstract = {Bsuite is a collection of carefully-designed experiments that investigate the core capabilities of RL agents.},
+  file = {E\:\\Zotero\\storage\\WLDRZUCR\\Osband et al_2019_Behaviour Suite for Reinforcement Learning.pdf;E\:\\Zotero\\storage\\UL24Z8CA\\forum.html},
+  keywords = {math-thesis},
+  language = {en}
+}
+
+@article{pfauConnectingGenerativeAdversarial2017,
+  ids = {pfauConnectingGenerativeAdversarial2017a},
+  title = {Connecting {{Generative Adversarial Networks}} and {{Actor}}-{{Critic Methods}}},
+  author = {Pfau, David and Vinyals, Oriol},
+  year = {2017},
+  month = jan,
+  abstract = {Both generative adversarial networks (GAN) in unsupervised learning and actor-critic methods in reinforcement learning (RL) have gained a reputation for being difficult to optimize. Practitioners in both fields have amassed a large number of strategies to mitigate these instabilities and improve training. Here we show that GANs can be viewed as actor-critic methods in an environment where the actor cannot affect the reward. We review the strategies for stabilizing training for each class of models, both those that generalize between the two and those that are particular to that model. We also review a number of extensions to GANs and RL algorithms with even more complicated information flow. We hope that by highlighting this formal connection we will encourage both GAN and RL communities to develop general, scalable, and stable algorithms for multilevel optimization with deep networks, and to draw inspiration across communities.},
+  archiveprefix = {arXiv},
+  eprint = {1610.01945},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\FA86E3T5\\Pfau_Vinyals_2017_Connecting Generative Adversarial Networks and Actor-Critic Methods.pdf;E\:\\Zotero\\storage\\GAJESBWN\\Pfau_Vinyals_2017_Connecting Generative Adversarial Networks and Actor-Critic Methods.pdf;E\:\\Zotero\\storage\\3D9IATH6\\1610.html;E\:\\Zotero\\storage\\U4I4SN2Q\\1610.html},
+  journal = {arXiv:1610.01945 [cs, stat]},
+  keywords = {_to_do,⛔ No DOI found,Computer Science - Machine Learning,math-thesis,Statistics - Machine Learning},
+  primaryclass = {cs, stat}
+}
+
+@article{QiangHuaXueXi2021,
+  title = {{强化学习}},
+  year = {2021},
+  month = mar,
+  abstract = {强化学习（英语：Reinforcement learning，简称RL）是机器学习中的一个领域，强调如何基于环境而行动，以取得最大化的预期利益。强化学习是除了监督学习和非监督学习之外的第三种基本的机器学习方法。与监督学习不同的是，强化学习不需要带标签的输入输出对，同时也无需对非最优解的精确地纠正。其关注点在于寻找探索（对未知领域的）和利用（对已有知识的）的平衡，强化学习中的``探索-利用''的交换，在多臂老虎机问题和有限MDP中研究得最多。。 其灵感来源于心理学中的行为主义理论，即有机体如何在环境给予的奖励或惩罚的刺激下，逐步形成对刺激的预期，产生能获得最大利益的习惯性行为。这个方法具有普适性，因此在其他许多领域都有研究，例如博弈论、控制论、运筹学、信息论、仿真优化、多智能体系统、群体智能、统计学以及遗传算法。在运筹学和控制理论研究的语境下，强化学习被称作``近似动态规划''（approximate dynamic programming，ADP）。在最优控制理论中也有研究这个问题，虽然大部分的研究是关于最优解的存在和特性，并非是学习或者近似方面。在经济学和博弈论中，强化学习被用来解释在有限理性的条件下如何出现平衡。 在机器学习问题中，环境通常被抽象为马尔可夫决策过程（Markov decision processes，MDP），因为很多强化学习算法在这种假设下才能使用动态规划的方法。传统的动态规划方法和强化学习算法的主要区别是，后者不需要关于MDP的知识，而且针对无法找到确切方法的大规模MDP。},
+  annotation = {Page Version ID: 64889694},
+  copyright = {Creative Commons Attribution-ShareAlike License},
+  file = {E\:\\Zotero\\storage\\WBVWBDF8\\index.html},
+  journal = {维基百科，自由的百科全书},
+  keywords = {math-thesis},
+  language = {zh-Hans-CN}
+}
+
+@article{ReinforcementLearning2021,
+  title = {Reinforcement Learning},
+  year = {2021},
+  month = mar,
+  abstract = {Reinforcement learning (RL) is an area of machine learning concerned with how intelligent agents ought to take actions in an environment in order to maximize the notion of cumulative reward. Reinforcement learning is one of three basic machine learning paradigms, alongside supervised learning and unsupervised learning. Reinforcement learning differs from supervised learning in not needing labelled input/output pairs be presented, and in not needing sub-optimal actions to be explicitly corrected. Instead the focus is on finding a balance between exploration (of uncharted territory) and exploitation (of current knowledge). The environment is typically stated in the form of a Markov decision process (MDP), because many reinforcement learning algorithms for this context use dynamic programming techniques. The main difference between the classical dynamic programming methods  and reinforcement learning algorithms is that the latter do not assume knowledge of an exact mathematical model of the MDP and they target large MDPs where exact methods become infeasible.},
+  annotation = {Page Version ID: 1009612279},
+  copyright = {Creative Commons Attribution-ShareAlike License},
+  file = {E\:\\Zotero\\storage\\M6S3Z82F\\index.html},
+  journal = {Wikipedia},
+  keywords = {math-thesis},
+  language = {en}
+}
+
+@misc{RenRenDuNengKanDongDeLSTM,
+  title = {{人人都能看懂的LSTM}},
+  abstract = {这是在看了台大李宏毅教授的深度学习视频之后的一点总结和感想。看完介绍的第一部分RNN尤其LSTM的介绍之后，整个人醍醐灌顶。本篇博客就是对视频的一些记录加上了一些个人的思考。0. 从RNN说起循环神经网络（Recur\ldots},
+  file = {E\:\\Zotero\\storage\\LGEN5Y73\\32085405.html},
+  howpublished = {https://zhuanlan.zhihu.com/p/32085405},
+  journal = {知乎专栏},
+  keywords = {math-thesis},
+  language = {zh}
+}
+
+@inproceedings{rothfussProMPProximalMetaPolicy2018,
+  title = {{{ProMP}}: {{Proximal Meta}}-{{Policy Search}}},
+  shorttitle = {{{ProMP}}},
+  booktitle = {International {{Conference}} on {{Learning Representations}}},
+  author = {Rothfuss, Jonas and Lee, Dennis and Clavera, Ignasi and Asfour, Tamim and Abbeel, Pieter},
+  year = {2018},
+  month = sep,
+  abstract = {A novel and theoretically grounded meta-reinforcement learning algorithm},
+  file = {E\:\\Zotero\\storage\\TNIYEAGZ\\Rothfuss et al_2018_ProMP.pdf;E\:\\Zotero\\storage\\8LQBIJ6H\\forum.html},
+  keywords = {math-thesis},
+  language = {en}
+}
+
+@article{sakLongShortTermMemory2014,
+  title = {Long {{Short}}-{{Term Memory Based Recurrent Neural Network Architectures}} for {{Large Vocabulary Speech Recognition}}},
+  author = {Sak, Ha{\c s}im and Senior, Andrew and Beaufays, Fran{\c c}oise},
+  year = {2014},
+  month = feb,
+  abstract = {Long Short-Term Memory (LSTM) is a recurrent neural network (RNN) architecture that has been designed to address the vanishing and exploding gradient problems of conventional RNNs. Unlike feedforward neural networks, RNNs have cyclic connections making them powerful for modeling sequences. They have been successfully used for sequence labeling and sequence prediction tasks, such as handwriting recognition, language modeling, phonetic labeling of acoustic frames. However, in contrast to the deep neural networks, the use of RNNs in speech recognition has been limited to phone recognition in small scale tasks. In this paper, we present novel LSTM based RNN architectures which make more effective use of model parameters to train acoustic models for large vocabulary speech recognition. We train and compare LSTM, RNN and DNN models at various numbers of parameters and configurations. We show that LSTM models converge quickly and give state of the art speech recognition performance for relatively small sized models.},
+  archiveprefix = {arXiv},
+  eprint = {1402.1128},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\TNF97QWS\\Sak et al_2014_Long Short-Term Memory Based Recurrent Neural Network Architectures for Large.pdf;E\:\\Zotero\\storage\\ZRV62DUX\\1402.html},
+  journal = {arXiv:1402.1128 [cs, stat]},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing,math-thesis,Statistics - Machine Learning},
+  primaryclass = {cs, stat}
+}
+
+@book{salvadorREINFORCEMENTLEARNINGLITERATURE2020,
+  title = {{{REINFORCEMENT LEARNING}}: {{A LITERATURE REVIEW}} ({{September}} 2020)},
+  shorttitle = {{{REINFORCEMENT LEARNING}}},
+  author = {Salvador, Jos{\'e} and Oliveira, Jo{\~a}o and Breternitz, Maur{\'i}cio},
+  year = {2020},
+  month = oct,
+  doi = {10.13140/RG.2.2.30323.76327},
+  abstract = {This paper contains a literature review of Reinforcement Learning and its evolution. Reinforcement Learning is a part of Machine Learning and comprises algorithms and techniques to achieve optimal control of an Agent in an Environment providing a type of Artificial Intelligence. This Agent can be a physical or virtual robot, can be a controller simulating a player in a game, or a bot trading stocks, etc. The study starts at Q-learning [56] published in 1989 and follows the thread of algorithms and frameworks up until 2020, looking at main insights each paper brings to the field regarding strategies to handle RL.},
+  file = {E\:\\Zotero\\storage\\F86QFST7\\Salvador et al_2020_REINFORCEMENT LEARNING.pdf},
+  keywords = {math-thesis}
+}
+
+@article{schaulPrioritizedExperienceReplay2016,
+  title = {Prioritized {{Experience Replay}}},
+  author = {Schaul, Tom and Quan, John and Antonoglou, Ioannis and Silver, David},
+  year = {2016},
+  month = feb,
+  abstract = {Experience replay lets online reinforcement learning agents remember and reuse experiences from the past. In prior work, experience transitions were uniformly sampled from a replay memory. However, this approach simply replays transitions at the same frequency that they were originally experienced, regardless of their significance. In this paper we develop a framework for prioritizing experience, so as to replay important transitions more frequently, and therefore learn more efficiently. We use prioritized experience replay in Deep Q-Networks (DQN), a reinforcement learning algorithm that achieved human-level performance across many Atari games. DQN with prioritized experience replay achieves a new stateof-the-art, outperforming DQN with uniform replay on 41 out of 49 games.},
+  archiveprefix = {arXiv},
+  eprint = {1511.05952},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\M4GYQZ73\\Schaul et al_2016_Prioritized Experience Replay.pdf},
+  journal = {arXiv:1511.05952 [cs]},
+  keywords = {⛔ No DOI found,Computer Science - Machine Learning,ICLR,ICLR 2016,math-thesis},
+  language = {en},
+  primaryclass = {cs}
+}
+
+@inproceedings{schaulUniversalValueFunction2015,
+  title = {Universal {{Value Function Approximators}}},
+  booktitle = {International {{Conference}} on {{Machine Learning}}},
+  author = {Schaul, Tom and Horgan, Daniel and Gregor, Karol and Silver, David},
+  year = {2015},
+  month = jun,
+  pages = {1312--1320},
+  publisher = {{PMLR}},
+  issn = {1938-7228},
+  abstract = {Value functions are a core component of reinforcement learning. The main idea is to to construct a single function approximator V(s; theta) that estimates the long-term reward from any state s, usi...},
+  file = {E\:\\Zotero\\storage\\37Z7IBJH\\Schaul et al_2015_Universal Value Function Approximators.pdf;E\:\\Zotero\\storage\\5MTQLBQQ\\schaul15.html},
+  keywords = {_to_do,math-thesis},
+  language = {en}
+}
+
+@article{schulmanProximalPolicyOptimization2017,
+  title = {Proximal {{Policy Optimization Algorithms}}},
+  author = {Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg},
+  year = {2017},
+  month = aug,
+  abstract = {We propose a new family of policy gradient methods for reinforcement learning, which alternate between sampling data through interaction with the environment, and optimizing a "surrogate" objective function using stochastic gradient ascent. Whereas standard policy gradient methods perform one gradient update per data sample, we propose a novel objective function that enables multiple epochs of minibatch updates. The new methods, which we call proximal policy optimization (PPO), have some of the benefits of trust region policy optimization (TRPO), but they are much simpler to implement, more general, and have better sample complexity (empirically). Our experiments test PPO on a collection of benchmark tasks, including simulated robotic locomotion and Atari game playing, and we show that PPO outperforms other online policy gradient methods, and overall strikes a favorable balance between sample complexity, simplicity, and wall-time.},
+  archiveprefix = {arXiv},
+  eprint = {1707.06347},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\C8I3333S\\Schulman et al_2017_Proximal Policy Optimization Algorithms.pdf;E\:\\Zotero\\storage\\ZQ64HB66\\1707.html},
+  journal = {arXiv:1707.06347 [cs]},
+  keywords = {Computer Science - Machine Learning,math-thesis},
+  primaryclass = {cs}
+}
+
+@inproceedings{schulmanTrustRegionPolicy2015,
+  title = {Trust Region Policy Optimization},
+  booktitle = {International Conference on Machine Learning},
+  author = {Schulman, John and Levine, Sergey and Abbeel, Pieter and Jordan, Michael and Moritz, Philipp},
+  year = {2015},
+  pages = {1889--1897},
+  publisher = {{PMLR}},
+  file = {E\:\\Zotero\\storage\\7QLPYNKP\\Schulman et al_2015_Trust region policy optimization.pdf;E\:\\Zotero\\storage\\9XS8VPPM\\schulman15.html},
+  keywords = {math-thesis}
+}
+
+@misc{ShenDuQiangHuaXueXiFaZhanShi,
+  title = {{深度强化学习发展史}},
+  abstract = {如今机器学习发展如此迅猛，各类算法层出不群，特别是深度神经网络在计算机视觉、自然语言处理、时间序列预测等多个领域更是战果累累，可以说这波浪潮带动了很多人进入深度学习领域，也成就了其一番事业。而强化学\ldots},
+  file = {E\:\\Zotero\\storage\\TIGB22XJ\\56399184.html},
+  howpublished = {https://zhuanlan.zhihu.com/p/56399184},
+  journal = {知乎专栏},
+  keywords = {math-thesis},
+  language = {zh}
+}
+
+@inproceedings{silverDeterministicPolicyGradient2014,
+  ids = {silverDeterministicPolicyGradient},
+  title = {Deterministic Policy Gradient Algorithms},
+  author = {Silver, David and Lever, Guy and Heess, Nicolas and Degris, Thomas and Wierstra, Daan and Riedmiller, Martin},
+  year = {2014},
+  file = {E\:\\Zotero\\storage\\IKN69TN2\\Silver et al_2014_Deterministic policy gradient algorithms.pdf},
+  keywords = {⛔ No DOI found,math-thesis}
+}
+
+@article{silverMasteringGameGo2016,
+  title = {Mastering the Game of {{Go}} with Deep Neural Networks and Tree Search},
+  author = {Silver, David and Huang, Aja and Maddison, Chris J. and Guez, Arthur and Sifre, Laurent and {van den Driessche}, George and Schrittwieser, Julian and Antonoglou, Ioannis and Panneershelvam, Veda and Lanctot, Marc and Dieleman, Sander and Grewe, Dominik and Nham, John and Kalchbrenner, Nal and Sutskever, Ilya and Lillicrap, Timothy and Leach, Madeleine and Kavukcuoglu, Koray and Graepel, Thore and Hassabis, Demis},
+  year = {2016},
+  month = jan,
+  volume = {529},
+  pages = {484--489},
+  publisher = {{Nature Publishing Group}},
+  issn = {1476-4687},
+  doi = {10/f77tw6},
+  abstract = {The game of Go has long been viewed as the most challenging of classic games for artificial intelligence owing to its enormous search space and the difficulty of evaluating board positions and moves. Here we introduce a new approach to computer Go that uses `value networks' to evaluate board positions and `policy networks' to select moves. These deep neural networks are trained by a novel combination of supervised learning from human expert games, and reinforcement learning from games of self-play. Without any lookahead search, the neural networks play Go at the level of state-of-the-art Monte Carlo tree search programs that simulate thousands of random games of self-play. We also introduce a new search algorithm that combines Monte Carlo simulation with value and policy networks. Using this search algorithm, our program AlphaGo achieved a 99.8\% winning rate against other Go programs, and defeated the human European Go champion by 5 games to 0. This is the first time that a computer program has defeated a human professional player in the full-sized game of Go, a feat previously thought to be at least a decade away.},
+  copyright = {2016 Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.},
+  file = {E\:\\Zotero\\storage\\NU2HCJQP\\Silver et al_2016_Mastering the game of Go with deep neural networks and tree search.pdf;E\:\\Zotero\\storage\\H2AYR6AY\\nature16961.html},
+  journal = {Nature},
+  keywords = {math-thesis},
+  language = {en},
+  number = {7587}
+}
+
+@article{silverMasteringGameGo2017,
+  title = {Mastering the Game of {{Go}} without Human Knowledge},
+  author = {Silver, David and Schrittwieser, Julian and Simonyan, Karen and Antonoglou, Ioannis and Huang, Aja and Guez, Arthur and Hubert, Thomas and Baker, Lucas and Lai, Matthew and Bolton, Adrian and Chen, Yutian and Lillicrap, Timothy and Hui, Fan and Sifre, Laurent and {van den Driessche}, George and Graepel, Thore and Hassabis, Demis},
+  year = {2017},
+  month = oct,
+  volume = {550},
+  pages = {354--359},
+  publisher = {{Nature Publishing Group}},
+  issn = {1476-4687},
+  doi = {10/gcsmk9},
+  abstract = {A long-standing goal of artificial intelligence is an algorithm that learns, tabula rasa, superhuman proficiency in challenging domains. Recently, AlphaGo became the first program to defeat a world champion in the game of Go. The tree search in AlphaGo evaluated positions and selected moves using deep neural networks. These neural networks were trained by supervised learning from human expert moves, and by reinforcement learning from self-play. Here we introduce an algorithm based solely on reinforcement learning, without human data, guidance or domain knowledge beyond game rules. AlphaGo becomes its own teacher: a neural network is trained to predict AlphaGo's own move selections and also the winner of AlphaGo's games. This neural network improves the strength of the tree search, resulting in higher quality move selection and stronger self-play in the next iteration. Starting tabula rasa, our new program AlphaGo Zero achieved superhuman performance, winning 100\textendash 0 against the previously published, champion-defeating AlphaGo.},
+  copyright = {2017 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.},
+  file = {E\:\\Zotero\\storage\\TRAHUSTC\\nature24270.html},
+  journal = {Nature},
+  keywords = {math-thesis},
+  language = {en},
+  number = {7676}
+}
+
+@inproceedings{suttonHordeScalableRealtime2011,
+  title = {Horde: {{A}} Scalable Real-Time Architecture for Learning Knowledge from Unsupervised Sensorimotor Interaction},
+  shorttitle = {Horde},
+  booktitle = {The 10th {{International Conference}} on {{Autonomous Agents}} and {{Multiagent Systems}}-{{Volume}} 2},
+  author = {Sutton, Richard S. and Modayil, Joseph and Delp, Michael and Degris, Thomas and Pilarski, Patrick M. and White, Adam and Precup, Doina},
+  year = {2011},
+  pages = {761--768},
+  file = {E\:\\Zotero\\storage\\JHZLA6F8\\Sutton et al_2011_Horde.pdf},
+  keywords = {math-thesis}
+}
+
+@article{suttonLearningPredictMethods1988,
+  title = {Learning to Predict by the Methods of Temporal Differences},
+  author = {Sutton, Richard S.},
+  year = {1988},
+  volume = {3},
+  pages = {9--44},
+  publisher = {{Springer}},
+  file = {E\:\\Zotero\\storage\\MQMXXIAJ\\Sutton_1988_Learning to predict by the methods of temporal differences.pdf},
+  journal = {Machine learning},
+  keywords = {math-thesis},
+  number = {1}
+}
+
 @book{suttonReinforcementLearningIntroduction2018,
-  title      = {Reinforcement Learning: An Introduction},
+  title = {Reinforcement Learning: An Introduction},
   shorttitle = {Reinforcement Learning},
-  author     = {Sutton, Richard S. and Barto, Andrew G.},
-  year       = {2018},
-  edition    = {Second edition},
-  publisher  = {{The MIT Press}},
-  address    = {{Cambridge, Massachusetts}},
-  abstract   = {"Reinforcement learning, one of the most active research areas in artificial intelligence, is a computational approach to learning whereby an agent tries to maximize the total amount of reward it receives while interacting with a complex, uncertain environment. In Reinforcement Learning, Richard Sutton and Andrew Barto provide a clear and simple account of the field's key ideas and algorithms."--},
-  file       = {E\:\\Zotero\\storage\\BTPJ5XXI\\Sutton and Barto - 2018 - Reinforcement learning an introduction.pdf;E\:\\Zotero\\storage\\PHPU6SW9\\the-book.html;E\:\\Zotero\\storage\\XXZKFQIS\\errata.html},
-  isbn       = {978-0-262-03924-6},
-  keywords   = {_reading,_to_read,Reinforcement learning},
-  language   = {en},
-  lccn       = {Q325.6 .R45 2018},
-  series     = {Adaptive Computation and Machine Learning Series}
-}
-@program{sysu-thesis,
-  title  = {中山大学毕业论文Latex模板},
-  author = {Songguang Chen and Junjie Huang  and Yongfeng, Wang},
-  url    = {https://github.com/SYSU-SCC/sysu-thesis},
-  year   = {2020}
+  author = {Sutton, Richard S. and Barto, Andrew G.},
+  year = {2018},
+  edition = {Second edition},
+  publisher = {{The MIT Press}},
+  address = {{Cambridge, Massachusetts}},
+  abstract = {"Reinforcement learning, one of the most active research areas in artificial intelligence, is a computational approach to learning whereby an agent tries to maximize the total amount of reward it receives while interacting with a complex, uncertain environment. In Reinforcement Learning, Richard Sutton and Andrew Barto provide a clear and simple account of the field's key ideas and algorithms."--},
+  file = {E\:\\Zotero\\storage\\BTPJ5XXI\\Sutton and Barto - 2018 - Reinforcement learning an introduction.pdf;E\:\\Zotero\\storage\\PHPU6SW9\\the-book.html;E\:\\Zotero\\storage\\XXZKFQIS\\errata.html},
+  isbn = {978-0-262-03924-6},
+  keywords = {_have_read,math-thesis,Reinforcement learning},
+  language = {en},
+  lccn = {Q325.6 .R45 2018},
+  series = {Adaptive Computation and Machine Learning Series}
 }
 
-@inproceedings{tighe2013finding,
-  title     = {Finding things: Image parsing with regions and per-exemplar detectors},
-  author    = {Tighe, Joseph and Lazebnik, Svetlana},
-  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  pages     = {3001--3008},
-  year      = {2013}
+@inproceedings{vanhasseltDeepReinforcementLearning2016,
+  ids = {vanhasseltDeepReinforcementLearning2015},
+  title = {Deep Reinforcement Learning with Double Q-Learning},
+  booktitle = {Proceedings of the {{AAAI}} Conference on Artificial Intelligence},
+  author = {Van Hasselt, Hado and Guez, Arthur and Silver, David},
+  year = {2016},
+  volume = {30},
+  archiveprefix = {arXiv},
+  eprint = {1509.06461},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\C34A6L6L\\Van Hasselt et al_2016_Deep reinforcement learning with double q-learning.pdf;E\:\\Zotero\\storage\\GC59Q8N3\\10295.html},
+  keywords = {AAAI,AAAI 2016,Computer Science - Machine Learning,math-thesis}
 }
+
+@article{watkinsQlearning1992,
+  title = {Q-Learning},
+  author = {Watkins, Christopher JCH and Dayan, Peter},
+  year = {1992},
+  volume = {8},
+  pages = {279--292},
+  publisher = {{Springer}},
+  file = {E\:\\Zotero\\storage\\55PULN4A\\Watkins_Dayan_1992_Q-learning.pdf},
+  journal = {Machine learning},
+  keywords = {math-thesis},
+  number = {3-4}
+}
+
+@article{xuDeepReinforcementLearning2020,
+  title = {Deep {{Reinforcement Learning}} with {{Stacked Hierarchical Attention}} for {{Text}}-Based {{Games}}},
+  author = {Xu, Yunqiu and Fang, Meng and Chen, Ling and Du, Yali and Zhou, Joey Tianyi and Zhang, Chengqi},
+  year = {2020},
+  volume = {33},
+  file = {E\:\\Zotero\\storage\\KUWL4JUY\\Xu et al_2020_Deep Reinforcement Learning with Stacked Hierarchical Attention for Text-based.pdf;E\:\\Zotero\\storage\\FPIUFGYQ\\bf65417dcecc7f2b0006e1f5793b7143-Abstract.html},
+  journal = {Advances in Neural Information Processing Systems},
+  keywords = {_to_do,⛔ No DOI found,math-thesis,NeurIPS,NeurIPS 2020},
+  language = {en}
+}
+
+@article{zarembaRecurrentNeuralNetwork2015,
+  title = {Recurrent {{Neural Network Regularization}}},
+  author = {Zaremba, Wojciech and Sutskever, Ilya and Vinyals, Oriol},
+  year = {2015},
+  month = feb,
+  abstract = {We present a simple regularization technique for Recurrent Neural Networks (RNNs) with Long Short-Term Memory (LSTM) units. Dropout, the most successful technique for regularizing neural networks, does not work well with RNNs and LSTMs. In this paper, we show how to correctly apply dropout to LSTMs, and show that it substantially reduces overfitting on a variety of tasks. These tasks include language modeling, speech recognition, image caption generation, and machine translation.},
+  archiveprefix = {arXiv},
+  eprint = {1409.2329},
+  eprinttype = {arxiv},
+  file = {E\:\\Zotero\\storage\\MCE2S868\\Zaremba et al_2015_Recurrent Neural Network Regularization.pdf;E\:\\Zotero\\storage\\8MHUJVH8\\1409.html},
+  journal = {arXiv:1409.2329 [cs]},
+  keywords = {Computer Science - Neural and Evolutionary Computing,math-thesis},
+  primaryclass = {cs}
+}
+
 
