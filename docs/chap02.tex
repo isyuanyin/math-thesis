@@ -7,11 +7,11 @@
 
 
 % TODO 引用
-Sutton在强化学习导论 \cite{suttonReinforcementLearningIntroduction2018}一书中，将强化学习的理论框架抽象成马尔可夫决策过程（Markov Decision Program, MDP），这也是目前机器学习领域的共识 \cite{mnihHumanlevelControlDeep2015} \cite{mnihAsynchronousMethodsDeep2016} \cite{hesselRainbowCombiningImprovements2018}  ，本文也以此为基础介绍相关的概念和理论。这一章将从马尔可夫决策过程出发，解释强化学习的基本概念，以及介绍一些实践中遇到的问题及其经典的解决方法。
+强化学习中的强化一次原表示动物的。Sutton在自己的著作 \cite{suttonReinforcementLearningIntroduction2018}中，将强化学习的理论框架抽象成马尔可夫决策过程（Markov Decision Program, MDP），这也是目前机器学习领域的共识 \cite{mnihHumanlevelControlDeep2015} \cite{mnihAsynchronousMethodsDeep2016} \cite{hesselRainbowCombiningImprovements2018}  ，本文也以此为基础介绍相关的概念和理论。这一章将从马尔可夫决策过程出发，解释强化学习的基本概念，以及介绍一些实践中遇到的问题及其经典的解决方法。
 
 \section{马尔可夫决策过程}
 \subsection{基本概念}
-马尔可夫链（Markov Chain, MC），也称马尔可夫过程，是马尔可夫决策过程的基础，在本文只考虑离散时间齐次马尔可夫链假设，即时间（随机变量的参数）可以表示为$T = {0, 1, 2, \dots}$，状态空间是离散的，记为 $\mathcal{S}$。
+马尔可夫链（Markov Chain, MC），也称马尔可夫过程，是马尔可夫决策过程的基础。本文只考虑离散时间齐次马尔可夫链假设，即时间（随机变量的参数）可以表示为$T = {0, 1, 2, \dots}$，状态空间是离散的，记为 $\mathcal{S}$。
 
 \begin{definition}[马尔可夫链]
     随机变量序列 $S_0, S_1, S_2, \dots$，如果满足（$\mathbb{P}$ 表示概率）：
@@ -54,12 +54,28 @@ Sutton在强化学习导论 \cite{suttonReinforcementLearningIntroduction2018}�
 \end{equation}
 
 
-\subsection{汇报和目标}
+\subsection{回报、折扣和优化目标}
+马尔可夫决策过程的目标是使得总的收益最大，是一类统计决策问题。假设策略是 $\pi = \pi(a | s)$，表示在状态 $s$ 的情况采取 $a$ 动作的概率。考虑一次抽样（即智能体与环境交互一个过程），将得到一个像序列 \ref{eq:mdp-sequence} 的结果。我们将一次采样的累积收益称之为此次采样的回报（return），记为$G$， 即
+\begin{equation}
+    G = \sum_{t \in T} R_t = R_0 + R_1 + R_2 + \dots
+\end{equation}
+此外，为了后面的叙述方便，我们可以将每个时刻看作开始时间点，然后计算与该时刻关联的回报。
+\begin{equation}
+    G_t = \sum_{t' \geq t} R_{t'}
+\end{equation}
+
+通常，我们无法改变状态转移的随机性，所以用回报的期望作为优化的目标是合理的。即
+\begin{equation}
+    \mathbb{E} [G] = \sum_{t \in T} R_t
+\end{equation}
+
+
+优化问题
 
 
 
 \subsection{Bellman方程}
-
+从以上可以
 
 
 
@@ -78,8 +94,8 @@ Sutton在强化学习导论 \cite{suttonReinforcementLearningIntroduction2018}�
 
 \section{深度强化学习}
 
-\subsection{深度学习的逼近方法案例}
+\subsection{深度学习的逼近方法}
 
-\subsection{分类}
+\subsection{经典的例子}
 
 
