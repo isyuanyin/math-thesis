@@ -7,7 +7,7 @@
 
 
 % TODO 引用
-强化学习中的强化一次原表示动物的。Sutton在自己的著作 \cite{suttonReinforcementLearningIntroduction2018}中，将强化学习的理论框架抽象成马尔可夫决策过程（Markov Decision Program, MDP），这也是目前机器学习领域的共识 \cite{mnihHumanlevelControlDeep2015} \cite{mnihAsynchronousMethodsDeep2016} \cite{hesselRainbowCombiningImprovements2018}  ，本文也以此为基础介绍相关的概念和理论。这一章将从马尔可夫决策过程出发，解释强化学习的基本概念，以及介绍一些实践中遇到的问题及其经典的解决方法。
+强化学习是为了处理现实中的问题而提出的概念。Sutton 在自己的著作 \cite{suttonReinforcementLearningIntroduction2018}中，将强化学习的理论框架抽象成马尔可夫决策过程（Markov Decision Program, MDP），这也是目前机器学习领域的共识 \cite{mnihHumanlevelControlDeep2015} \cite{mnihAsynchronousMethodsDeep2016} \cite{hesselRainbowCombiningImprovements2018}  ，本文也以此为基础介绍相关的概念和理论。这一章将从马尔可夫决策过程出发，解释强化学习的基本概念，以及介绍一些实践中遇到的问题及其经典的解决方法。
 
 \section{马尔可夫决策过程}
 \subsection{基本概念}
@@ -43,18 +43,18 @@
     \end{equation}
 \end{definition}
 
-从定义可以看出，马尔可夫决策过程由一个三元组 $(\mathcal{S}, \mathcal{A}, \mathcal{R})$ 决定，$S_t$ 和并且 $S_0, S_1, S_2, \dots$ 仍然是一个马尔可夫链，只是转移概率与此刻的动作动作关联。从函数 $p(s', r|s, a)$ 可以计算出两个关键的信息，一个是状态转移概率，
+从定义可以看出序列 $\{S_t\}$ 仍然是一个马尔可夫链，只是转移概率与此刻的动作动作关联。从函数 $p(s', r|s, a)$ 可以计算出两个关键的信息，一个是状态转移概率，
 
 \begin{equation}
     p(s'|s, a) = \mathcal{P}[S_t = s' | S_{t-1} = s, A_{t-1} = a] = \sum_{r\in \mathcal{R}} p(s', r|s, a)
 \end{equation}
 和每个状态-动作的期望收益，
 \begin{equation}
-    r(s' | s, a) = \mathcal{E} [R_t | S_{t-1} = s, A_{t-1} = a] = \sum_{r\in \mathcal{R}} \sum_{s' \in \mathcal{S} p(s', r | s, a)}
+    r(s' | s, a) = \mathbb{E} [R_t | S_{t-1} = s, A_{t-1} = a] = \sum_{r\in \mathcal{R}} \sum_{s' \in \mathcal{S} p(s', r | s, a)}
 \end{equation}
 
 
-\subsection{回报、折扣和优化目标}
+\subsection{回报和折扣}
 马尔可夫决策过程的目标是使得总的收益最大，是一类统计决策问题。假设策略是 $\pi = \pi(a | s)$，表示在状态 $s$ 的情况采取 $a$ 动作的概率。考虑一次抽样（即智能体与环境交互一个过程），将得到一个像序列 \ref{eq:mdp-sequence} 的结果。我们将一次采样的累积收益称之为此次采样的回报（return），记为$G$， 即
 \begin{equation}
     G = \sum_{t \in T} R_t = R_0 + R_1 + R_2 + \dots
@@ -69,21 +69,17 @@
     \mathbb{E} [G] = \sum_{t \in T} R_t
 \end{equation}
 
+\subsection{优化目标 和 Bellman方程}
+优化问题是
 
-优化问题
 
-
-
-\subsection{Bellman方程}
 从以上可以
 
 
 
 \section{实践中的强化学习}
-
-
 \subsection{动态规划}
-
+在时间中全部
 
 \subsection{蒙特卡洛方法}
 
@@ -91,8 +87,10 @@
 \subsection{时序差分学习}
 
 \subsection{逼近方法}
+    如果 $Q$ 函数
 
 \section{深度强化学习}
+    近年来，深度学习随着现代计算机计算能力的提升而发挥出惊人的潜能。神经网络作为一个逼近器
 
 \subsection{深度学习的逼近方法}
 
