@@ -1,7 +1,7 @@
-\chapter{相关工作与研究现状}
+\chapter{相关工作}
 \label{cha:sysu-thesis-latex-install-guide}
 
-本章介绍与本文类似的相关工作
+本章介绍与本文类似的相关工作，包括元学习的早期工作、针对小样本的一些元学习方式以及强化学习的各类元学习框架。
 
 
 % 介绍早期的元学习的研究思想
@@ -18,16 +18,15 @@ Finn等人提出的 MAML（2017年）\cite{finnModelagnosticMetalearningFast2017
 2017年 Duan 等人提出的 RL$^2$ 算法 \cite{duanRLFastReinforcement2016} 针对学习过程中实验次数过多问题，通过在代理的整个生命周期中展开LSTM，将学习本身描述为RL问题，从而利用过去的学习经验，减少在当前环境的训练次数。
 所有这些方法都没有明确区分智能体和算法，所以，这些元学习算法也适用于单个智能体的程序结构。
 
+% 单一环境任务下的元学习
+\section{针对单一任务的元学习}
+Xu等人\cite{xuMetagradientReinforcementLearning2018} （2018年）引入了元梯度RL方法；它使用反向传播遍历代理程序的更新，以计算相对于更新的元参数的梯度。
+该方法已应用于元学习各种形式的算法组件，例如折扣因子，内在奖励，辅助任务，回报，辅助策略更新等\cite{ohDiscoveringReinforcementLearning2020}。然而，本文的工作与该方法的侧重点不一样，类似于LPG \cite{ohDiscoveringReinforcementLearning2020}：发现对更广泛的智能体和环境类别有效的通用算法，而不是适应特定的环境。
 
-\section{针对单一任务在线的元学习}
-Xu等人\cite{xuMetagradientReinforcementLearning2018} 引入了元梯度RL方法；它使用反向传播遍历代理程序的更新，以计算相对于更新的元参数的梯度。
-相反，本文的工作有一个正交的目标：发现对更广泛的代理和环境类别有效的通用算法，而不是适应特定的环境。
-
-\section{自学习的强化学习算法}
-EPG [16]使用进化策略来找到策略更新规则。
-郑等人[40]表明，勘探的一般知识可以通过奖励函数的形式获得。 
-ML3 [6]使用元梯度对损失函数进行元学习。
+\section{元强化学习算法}
+Houthooft 等人 在EPG \cite{houthooftEvolvedPolicyGradients2018} （2018年）使用进化策略来找到策略更新规则。
+郑等人 \cite{zhengWhatCanLearned2020}（2018）提出将奖励函数本身作为强化学习算法的表示的元学习框架，表明勘探的一般知识可以通过奖励函数的形式获得。
 但是，先前的工作最多只能将相同领域中的相似任务概括化。
 最近，提出了MetaGenRL \cite{kirschImprovingGeneralizationMeta2019} 来元学习领域不变的策略更新规则，该规则能够从几个MuJoCo环境推广到其他MuJoCo环境。
 然而很少有先前的工作试图发现完整的更新规则；取而代之的是，它们全都依赖于价值函数（可以说是RL的最基本构建块）进行引导。
-DeepMind公司在2020年提出的LPG元学习自举机制\cite{ohDiscoveringReinforcementLearning2020}。
+DeepMind公司在2020年提出的LPG元学习自举机制\cite{ohDiscoveringReinforcementLearning2020}，该论文尝试使用LSTM模型学习到一个强化学习算法，而不是使用手工的方式定义一个梯度策略更新规则。该方法在特定的环境下表现比经典的优势动作者-评论者（advantage actor-critick，A2C）算法 \cite{mnihAsynchronousMethodsDeep2016} 的表现要好。然而该算法过于激进，完全不考虑人类知识对算法的改进。本文类似于此方法，不同的是，本文的方法将融合A2C算法对智能体学习的指导作用。
