@@ -1,8 +1,17 @@
 \chapter{算法}
 \label{cha:usage-example}
 
-本章介绍本文的算法。
+\section{算法架构}
+为了能让机器自动寻找到合适的强化学习算法，需要设计一个用参数表示的强化学习的算法，记为 $\eta$。设环境的分布为 $p(\mathcal{E})$ 和智能体的初始参数为 $\theta_0$，则元学习的目标是：
 
-\section{架构}
+\begin{equation}
+    \eta^* = \arg \max \mathbb{E}_{\mathcal{E} \thicksim p(\mathcal{E})} \mathbb{E}_{\theta_0 \thicksim p(\theta_0)} [G]
+\end{equation}
 
-拟议的元学习框架的目标是从环境p（E）和初始代理参数p（θ0）的分布中找到由η参数化的最佳更新规则：
+这里的 $G=\mathbb{E}_{\pi_{\theta_N} } [\sum_t^\infty \gamma^t r_t]$ 是智能体与环境交互的整个生命周期的期望回报。这个架构类似于LPG \cite{ohDiscoveringReinforcementLearning2020}。但不同的是，LPG 利用策略梯度进行元学习更新参数 $\eta$，本文将结合策略梯度，将预测的变量 $y$ 包含 $\pi$ 的信息。
+
+\section{智能体更新}
+
+
+
+\section{元学习更新}
