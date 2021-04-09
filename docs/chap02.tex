@@ -5,80 +5,99 @@
 \chapter{背景知识}
 \label{cha:background-knowledge}
 
-
-% TODO 引用
 强化学习是为了处理现实中的问题而提出的概念。Sutton 在自己的著作 \cite{suttonReinforcementLearningIntroduction2018}中，将强化学习的理论框架抽象成马尔可夫决策过程（Markov Decision Program, MDP），这也是目前机器学习领域的共识 \cite{mnihHumanlevelControlDeep2015} \cite{mnihAsynchronousMethodsDeep2016} \cite{hesselRainbowCombiningImprovements2018}  ，本文也以此为基础介绍相关的概念和理论。这一章将从马尔可夫决策过程出发，解释强化学习的基本概念，以及介绍一些实践中遇到的问题及其经典的解决方法。
 
-\section{马尔可夫决策过程}
-\subsection{基本概念}
-% 马尔可夫链（Markov Chain, MC），也称马尔可夫过程，是马尔可夫决策过程的基础。本文只考虑离散时间齐次马尔可夫链假设，即时间（随机变量的参数）可以表示为$T = {0, 1, 2, \dots}$，状态空间是离散的，记为 $\mathcal{S}$。
+\section{基本概念}
+\subsection{马尔可夫决策过程}
 
-% \begin{definition}[马尔可夫链]
-%     随机变量序列 $S_0, S_1, S_2, \dots$，如果满足（$\mathbb{P}$ 表示概率）：
-%     \begin{itemize}
-%         \item[] $\mathbb{P} [S_{t} = s' |S_0 = s_0, \dots, S_{t-2} = s_{t-2}, S_{t-1} = s] = \mathbb{P} [S_{t} = s' | S_{t-1} = s]$
-%     \end{itemize}
-%     则称该随机变量序列具有马尔可夫性质，并且称这样的随机变量序列为马尔可夫链。
-% \end{definition}
+如第一章所言，我们假设智能体和环境的交互是离散的，如图 \ref{fig:agent-env-interaction} 所示， $t$ 的取值范围是 $\{0, 1, 2,3, \dots\}$。在每一个 $t$ 时刻依次发生如下事件：
+\begin{itemize}
+    \item 智能体观察处于状态 $S_t \in \mathcal{S}$ 的环境，得到观测 $O_t \in \mathcal{O}$，其中 $\mathcal{S}$ 是假设的状态空间，包含所有可能的状态；$\mathcal{O}$ 是假设的观测空间，包含所有可能的观测值。
+    \item 智能体根据观测决定做出动作 $A_t \in \mathcal{A}$，其中 $\mathcal{A}$ 是动作空间。
+    \item 在智能体做出动作后，环境会反馈一个奖励 $R_{t+1} \in \mathcal{R}$ 给智能体，其中$\mathcal{R}$ 是所有可能奖励的集合，一般假设 $\mathcal{R} \subset \mathbb{R}$。
+\end{itemize}
 
-% \begin{definition}[离散时间齐次马尔可夫链]
-%     随机变量序列 $S_0, S_1, S_2, \dots$是离散时间齐次马尔可夫链，如果具有马尔可夫性质并且满足：
-%     $\mathbb{P} [S_{t+1} = s' | S_t = s] = \mathcal{P}_{ss'}$，其中$\mathcal{P}$ 是确定的矩阵，称为转移矩阵。
-% \end{definition}
-
-% 上述定义表明离散时间齐次马尔可夫链在每个时刻的下一个状态只依赖于当前状态，并且与所在时刻无关。
-
-如第一章所言，马尔可夫决策过程是马尔科夫链在每个状态关联一个动作和奖励，构成一个新的序列，如下所示。
-
+为了叙述简单，假设智能体总是可以观测到环境的状态，即 $S_t = O_t$。智能体与环境交互的过程产生的序列如下：
 \begin{equation}
     S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3,\dots
     \label{eq:mdp-sequence}
 \end{equation}
 
-假设动作空间是 $\mathcal{A}$，奖励的集合是 $\mathcal{R} \subset \mathbb{R}$，即$A_t \in \mathcal{A}$，$R_t \in \mathcal{R}$。马尔可夫决策过程中的下一个状态以及获得的奖励只与当前时刻的状态和动作有关。
+在此基础上，进一步假设 奖励 $R_{t+1}$ 和下一个状态 $S_{t+1}$ 仅仅依赖当前的状态 $S_t$ 和动作 $A_t$，这称之为马尔可夫性质。用概率论的观点描述这种依赖就是：
 
-\begin{definition}[马尔可夫决策过程]
-    一个马尔可夫决策过程是如同序列 \ref{eq:mdp-sequence} 的形式，并且对于任意的$s', s \in \mathcal{S}, r \in \mathcal{R} \text{以及} a\in \mathcal{A}$，满足：
+\begin{equation}
+    \mathbb{P}[S_t = s', R_t = r| S_{t-1}, A_{t-1} = a] = p(s', r | s, a)
+    \label{eq:markov-condition-probability}
+\end{equation}
+
+恒满足等式 \ref{eq:markov-condition-probability} 的序列 \ref{eq:mdp-sequence} 就是马尔可夫决策过程的模型，表示 $p(s', r | s, a)$ 决定了所有时间上的状态转移和所得奖励的概率。在马尔可夫决策过程中，智能体选择一个策略（policy），在交互的每个时刻根据状态（观测）做出动作，用函数 $\pi : \mathcal{S} \times \mathcal{A} \rightarrow [0, 1]$ 表示策略，即选择某个动作的概率，
+\begin{equation}
+        \begin{split}
+            \pi(a|s) = \mathbb{P} [A_t = a | S_t = s]
+        \end{split}
+\end{equation}
+
+上述的模型可以导出一些更加直观的结论，
+\begin{itemize}
+    \item 状态转移概率：
     \begin{equation}
-        \mathbb{P}[S_t = s', R_t = r| S_{t-1}, A_{t-1} = a] = p(s', r | s, a)
-        \label{def:mdp}
+        p(s'|s, a) = \mathcal{P}[S_{t+1} = s' | S_{t} = s, A_{t} = a] = \sum_{r\in \mathcal{R}} p(s', r|s, a)
     \end{equation}
-\end{definition}
-
-从定义可以看出序列 $\{S_t\}$ 仍然是一个马尔可夫链，只是转移概率与此刻的动作动作关联。从函数 $p(s', r|s, a)$ 可以计算出两个关键的信息，一个是状态转移概率，
-
-\begin{equation}
-    p(s'|s, a) = \mathcal{P}[S_t = s' | S_{t-1} = s, A_{t-1} = a] = \sum_{r\in \mathcal{R}} p(s', r|s, a)
-\end{equation}
-和每个状态-动作的期望收益，
-\begin{equation}
-    r(s' | s, a) = \mathbb{E} [R_t | S_{t-1} = s, A_{t-1} = a] = \sum_{r\in \mathcal{R}} \sum_{s' \in \mathcal{S} p(s', r | s, a)}
-\end{equation}
+    \item “状态-动作”的期望奖励：
+    \begin{equation}
+        r(s, a) = \mathbb{E} [R_{t+1} | S_{t} = s, A_{t} = a] = \sum_{r\in \mathcal{R}} r \sum_{s' \in \mathcal{S}} p(s', r | s, a)
+    \end{equation}
+    \item “状态-动作-状态”的期望奖励：
+    \begin{equation}
+        r(s, a, s') = \mathbb{E} [R_{t+1} | S_{t} = s, A_{t-1} = a] = \sum_{r\in \mathcal{R}} r p(s', r | s, a)
+    \end{equation}
+\end{itemize}
 
 
-\subsection{回报和折扣}
-马尔可夫决策过程的目标是使得总的收益最大，是一类统计决策问题。假设策略是 $\pi = \pi(a | s)$，表示在状态 $s$ 的情况采取 $a$ 动作的概率。考虑一次抽样（即智能体与环境交互一个过程），将得到一个像序列 \ref{eq:mdp-sequence} 的结果。我们将一次采样的累积收益称之为此次采样的回报（return），记为$G$， 即
+\subsection{回报、折扣和值函数}
+强化学习的目标是最大化累积的奖励，用回报（return）表示累积的奖励，则从 $t$ 时刻之后的回报 $G_t$ 定义为：
 \begin{equation}
-    G = \sum_{t \in T} R_t = R_0 + R_1 + R_2 + \dots
-\end{equation}
-此外，为了后面的叙述方便，我们可以将每个时刻看作开始时间点，然后计算与该时刻关联的回报。
-\begin{equation}
-    G_t = \sum_{t' \geq t} R_{t'}
+    G_t = \sum_{k \geq 1} R_{t+k} = R_{t+1} + R_{t+2} + R_{t+3} + \dots
 \end{equation}
 
-通常，我们无法改变状态转移的随机性，所以用回报的期望作为优化的目标是合理的。即
+通过累积计算出来的回报往往是无穷大，通常会引入折扣（discount）$\gamma \in [0,1]$ 重新定义回报：
 \begin{equation}
-    \mathbb{E} [G] = \sum_{t \in T} R_t
+    G_t = \sum_{k \geq 1} \gamma^{k-1} R_{t+k} = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots
+    \label{eq:return}
 \end{equation}
 
-\subsection{优化目标 和 Bellman方程}
-% 优化问题是
-% 从以上可以
+对于给定的策略 $\pi$，可以计算状态 $S_t = s$ 的期望回报，记为
+\begin{equation}
+    v_\pi (s) = \mathbb{E}_\pi [G_t | S_t = s]
+    \label{eq:state-value-function}
+\end{equation}
 
+当在状态 $s$ 采取一个确定的动作 $a$ 时，期望回报重新计算为如下，
+\begin{equation}
+    q_\pi(s, a) = \mathbb{E} [G_t | S_t = s, A_t = a] 
+    \label{eq:action-value-function}
+\end{equation}
 
+上面两个函数分别称为状态价值函数和（状态-）动作价值函数。显然，两者的关系为 $ v_\pi(s) = \sum_{a} \pi(a|s) q_{\pi} (s, a)$。
+
+\subsection{最优策略}
+假设初始状态 $S_0 = s$ 的概率为 $p_0(s)$，则强化学习的求解目标自然是，
+\begin{equation}
+    \max_\pi \sum_s v_\pi(s) p_0(s)
+    \label{eq:subject}
+\end{equation}
+
+而公式 \ref{eq:state-value-function} 的计算可以简化为各个状态 $v_\pi(s)$ 之间的计算关系，即
+\begin{equation}
+    v_\pi (s) = \sum_a \pi(a|s) \left[ \sum_{s', r} p(s', r | s, a)  [r + \gamma v_\pi(s')] \right]
+    \label{eq:constraint}
+\end{equation}
+
+目标 \ref{eq:subject} 和 约束 \ref{eq:constraint} 与策略函数 $\pi(a|s)$ 自身的约束是一个线性规划问题。同样地，我们可以利用线性规划问题的求解方法求解该问题。不过假设 $\pi_*$ 是最优策略，而$v_*(s)$是该策略下的值函数，那么 $v_*(s)$ 应该满足
 
 \section{实践中的强化学习}
 \subsection{动态规划}
+强化学习的动态规划算法主要在
 % 在时间中全部
 
 \subsection{蒙特卡洛方法}
