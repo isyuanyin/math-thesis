@@ -266,14 +266,14 @@ class GridMaps(NamedTuple):
 SIMPLE = GridworldConfig(
     art=[
         "###########",
-        "#  c      #",
+        "#  c #    #",
         "#         #",
         "#    #    #",
-        "#    #  ###",
         "#    #    #",
-        "###  #   c#",
+        "## ##### ##",
+        "#    #   c#",
         "#    #    #",
-        "#b   ##   #",
+        "#b        #",
         "#    #  a #",
         "###########",
     ],
@@ -290,20 +290,16 @@ SIMPLE = GridworldConfig(
     max_steps=100,
 )
 
+
+
+
 if __name__ == '__main__':
     
     # game_config = GridMaps.DENSE
     game_config = SIMPLE
     art = np.array([list(x) for x in game_config.art])
+
     
     im = draw(art, grid_size=100, gap_size=4, draw_text=False)
-    # im.show()
-    # im.save('gridworld.png')
-
-    plt.ion()
-    for i in range(100):
-        plt.imshow(im)
-        plt.draw()
-        plt.show()
-        plt.pause(0.1)
-        plt.clf()
+    im.show()
+    im.save('simple_grid_world.png')
