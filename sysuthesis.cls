@@ -1082,6 +1082,18 @@
     \newclearpage
 }
 
+% % 我插入的命令
+% \usepackage{color}
+% \usepackage{transparent}
+% \usepackage{graphicx}
+% \usepackage{import}
+
+% \newcommand{\includesvg}[2]{%
+% \def\svgwidth{#1}%
+% \import{i}{#2.pdf_tex}%
+% }
+
+
 
 % 配置超链接。
 % hyperref一般要求是导言区最后一个宏包，才能正常工作

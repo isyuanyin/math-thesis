@@ -10,7 +10,34 @@
 
 这里的 $G=\mathbb{E}_{\pi_{\theta_N} } [\sum_t^\infty \gamma^t r_t]$ 是智能体与环境交互的整个生命周期的期望回报。这个架构类似于LPG \cite{ohDiscoveringReinforcementLearning2020}。但不同的是，LPG 利用策略梯度进行元学习更新参数 $\eta$，本文将结合策略梯度，将预测的变量 $y$ 包含 $\pi$ 的信息。
 
+\begin{figure}[h!] % image examples & compare
+    \centering
+    \includegraphics[width=0.4\textwidth]{image/chap04/simple_grid_world.pdf}
+    \label{fig:compare1}
+    \caption{复杂的两列对象的插入}
+    \label{fig:complex}
+\end{figure}
+
+% \begin{figure}[h!] % image examples & compare
+%     \begin{subfigure}{0.5\textwidth}
+%         \includegraphics[width=0.5\textwidth]{image/chap04/simple_grid_world.pdf}
+%         \label{fig:compare1}
+%     \end{subfigure}
+%     \begin{subfigure}{0.5\textwidth}
+%         % \centering
+%         \includegraphics[width=0.5\textwidth]{image/chap04/simple_grid_world.pdf}
+%         \caption{右边的图像}
+%         \label{fig:compare2}
+%     \end{subfigure}
+%     \caption{复杂的两列对象的插入}
+%     \label{fig:complex}
+% \end{figure}
+
+
+
+
 \section{智能体更新}
+
 
 
 
