@@ -1,32 +1,90 @@
-\chapter{相关工作}
-\label{cha:sysu-thesis-latex-install-guide}
+\chapter{算法}
+\label{cha:usage-example}
 
-本章介绍与本文类似的相关工作，包括元学习的早期工作、针对小样本的一些元学习方式以及强化学习的各类元学习框架。
+\section{算法架构}
+
+为了能让机器自动寻找到合适的强化学习算法，需要设计一个用参数表示的强化学习的策略更新算法。而为了使得用参数表示的强化学习算法能够具有更大的表示能力，本文设计一个能表示更丰富信息的向量，这个向量蕴含了智能体策略的信息，也能够在在设计的策略更新算法上更好地记忆在某类环境中更适合的学习方式。假设将新的策略更新算法参数化为 $\eta$。在这里，更新规则$\eta$并不直接更新策略$\pi$，而是直接更新预测向量$y_\theta$，然后通过一个简单解析器，从$y_\theta$解析出策略$\pi$来。
+
+设环境的分布为 $p(\mathcal{E})$ 和智能体的初始参数为 $\theta_0$，则元学习的目标是：
+\begin{equation}
+    \eta^* = \arg \max \mathbb{E}_{\mathcal{E} \thicksim p(\mathcal{E})} \mathbb{E}_{\theta_0 \thicksim p(\theta_0)} [G]
+    \label{eq:target}
+\end{equation}
+这里的 $G=\mathbb{E}_{\pi_N } [\sum_t^\infty \gamma^t r_t]$ 是智能体与环境交互的整个生命周期的期望回报。直观地，该目标旨在找到一个更新规则 $\eta$，以便在将其用于更新代理的参数直到其生命周期结束$ (\theta_0 \rightarrow \theta_1 \rightarrow \dots \rightarrow \theta_N)$ 时，该智能体会在给定环境中最大程度地提高预期收益。这个架构类似于LPG \cite{ohDiscoveringReinforcementLearning2020}。但不同的是，LPG事实上是利用策略梯度进行元学习更新参数 $\eta$，这样的元学习框架依赖于$\pi$的维度。本文将在元学习和智能体策略更新的时候都使用这样的方法。另一方面是，本文直接令预测的变量 $y$ 包含 $\pi$ 的信息，而不是让预测向量$y$和策略$\pi$作为同等的输入进行学习。总之，本文算法使用的是由元参数$\eta$参数化的更新规则，该更新规则要求智能体 $m$ 维分类预测向量 $y_\theta(s) \in \mathcal{R}^m$ ，然后在预测向量 $y$ 中解析出策略$\pi_y(a|s)$。事实上，元学习得到的更新规则由一个LSTM网络 \cite{sakLongShortTermMemory2014} 表示，记录如何从智能体与环境交互的轨迹中生成预测向量，然后再生成更新策略$\pi_{y}(a|s)$。这里的$y_\theta(s)$的更新过程和$\eta$的元学习过程如\autoref{fig:arch}所示，图中右边的不同深度的卡片代表着元学习过程$\eta$的迭代，而里面的$ (\theta_0 \rightarrow \theta_1 \rightarrow \dots \rightarrow \theta_N)$ 表示智能体策略更新过程中，智能体参数 $\theta$ 的迭代更新过程；左边的小图是预测向量$y$在LSTM模型中的更新过程。示意图中没有将算法中隐含的A2C算法部分展示出来，本文将在后面的算法描述中详细介绍。
+
+更具体地，在每一个时间 $t$，输入是 $x_t = [r_t, d_t, \gamma, \pi(a_t | s_t), y_{\theta}(s_t), y_{\theta}(s_{t+1})]$。其中$r_t$是奖励；$d_t$ 二进制的数值，表示事件是否终止；而$\gamma$是折扣因子。实际学习过程中的将输入的$r_t$进行累积，计算出$G_t$，作为元学习和智能体策略更新的输入。与RL$^2$\cite{duanRLFastReinforcement2016}算法不同，本文算法不会将观测（状态）空间和动作空间作为输入，因此它不变。取而代之的是，它仅采用比所选动作 $\pi(a|s)$ 的概率含义更宽泛的预测向量$y$和回报值，这样可以通过挖掘智能体与环境交互过程所获得的奖励情况，找到一个可能更合适的策略更新规则。这种方式允许本文算法的架构可以应用于完全不同的环境，同时防止过度拟合。
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{image/chap03/arch.pdf}
+    \caption{算法架构示意图}
+    \label{fig:arch}
+\end{figure}
 
 
-% 介绍早期的元学习的研究思想
-\section{比较早期的工作}
-学习如何去学习（learning to learn），有时候也称为元学习（meta learning）\cite{MetaLearningComputer2021} 在早期工作里已经有各式各样的讨论。例如改进遗传程序设计\cite{ohDiscoveringReinforcementLearning2020} \cite{schmidhuberEvolutionaryPrinciplesSelfreferential1987}，学习神经网络更新规则 \cite{bengioLearningSynapticLearning1990}，学习率适应 \cite{suttonAdaptingBiasGradient1992} 和领域不变知识的转移\cite{thrunLearningOneMore1994}等等。此类工作表明，不仅可以学习优化固定目标，而且可以改进在元级别进行优化的方式，从而解决人为设计学习规则不是完全适应问题本身的难题。
+
+\section{智能体（策略）更新}
+智能体的策略使用策略函数$\pi$进行表示，如上面的架构所述，$\pi$ 是由预测向量$y$来生成的，而$y$通过元参数$\eta$进行迭代求解出来。元学习和具体学习的过程都是固定住$\eta$，然后通过$\eta$决定的$\theta$的更新规则进行更新$\theta$，不同的是，元学习过程会在某个时刻更新$\eta$的值，在考虑智能体更新的算法中先忽略这一点。假设固定了策略更新算法 $\eta$ 后，通过梯度下降的优化方式更新智能体参数。这里使用的优化的损失函数如下：
+\begin{equation}
+    L(\theta) = \mathbb{E}_{\pi} \left[\sum_t -(G_t - v(s_t) ) \ln \pi_{y_t} (a_t|s_t) + \alpha ||\hat{y_{t+1}} - y_t+1||^2 \right]
+    \label{eq:agent-update}
+\end{equation}
+其中，$\alpha$是比例参数，上面公式里面的符号省略了需要更新的参数 $\theta$，但其中的$y$是依赖于$\theta$，而策略$\pi$通过一个解析器间接依赖于$\theta$。在较高的层次上，$y$的更新过程指定应如何调整动作概率$\pi(s)$，并直接影响智能体的行为。智能体更新的过程如 \autoref{algo:policy-update}所示，里面的过程隐藏了解析器和解析器的更新方式。\autoref{eq:agent-update}的左边是策略梯度的损失函数，而右边是通过LSTM对预测向量的调整。从这个损失中可以看出，本文的方法如前面所言，是在传统的强化学习策略更新规则上，加上数据驱动方式自适应调整。而其中的自适应过程就是在下一个小节中所讲的元学习过程。$L$中右式的左边是$A2C$算法的公式，在实践中是用$n$步的收益和下一步的$v_{t+n}$估计计算估计的$G_t$。
+
+对于策略解析器，可以使用复杂的多层感知机（MLP）模型或者线性模型与非线性模型的混合，这样可以使得解析器具有更加强大的表示能力。但是这样的方式可能会使得实践上模型的收敛变得困难。鉴于这篇文章更重要的目的是检验这个算法的可行性，这里只是单纯地使用了一个简单地线性模型，即策略$\pi$是预测向量$y$的一个线性组合，如\autoref{eq:pred2policy}所示，其中$\sigma$是softmax函数，是为了得到一个概率分布的向量。另外，简单的线性模型的解析器可以蕴含了策略梯度和优势动作者-评论者算法模型的表达能力。需要注意的是，本文是希望提出一个可改进的框架，一方面可以在这个框架的基础上进行调整；另一方面可以将框架里面的组件替换成更庞大且更容易训练的模型，这样就能够不断丰富该算法。线性模型只是时间和算力的一个折中的选择，而理论上，其它复杂的模型可能更加适合。
+\begin{equation}
+    \pi = \sigma (Wy)
+    \label{eq:pred2policy}
+\end{equation}
+
+从$y$到$\pi$的策略解析器决定了预测向量与策略之间的关系，但是我们并不知道预测向量如何决定策略，也不知道预测向量如何替代策略进行迭代更新。所以需要调整解析器的表达方式，简单来说，即通过损失\autoref{eq:agent-update}的梯度下降调整解析器参数$W$的值。但是为了能达到收敛，$W$的更新不能太频繁，仅在设定$M$步后更新$W$。
+
+\begin{algorithm}[h]
+    \KwIn{$p(\mathcal{E})$：环境的分布， $p(\theta_0)$：初始化参数的分布}
+    采样环境和智能体的参数 $\{ \mathcal{E} \sim p(\mathcal{E}), \ \theta \sim p(\theta_0)\}$
+    \Repeat{$\theta$ 收敛} {
+        智能体与环境交互，生成如序列 \ref{eq:mdp-sequence}的轨迹 \\
+        计算$\theta$的梯度和$W$的累积梯度\\
+        使用元参数 $\eta$ 和 \autoref{eq:agent-update} 更新 $\theta$的值 \\
+        每$M$步，利用累积梯度更新$W$的值\\
+        \If{生命周期结束} {
+            重置环境 $\mathcal{E}$
+        }
+    }
+
+    \caption{策略更新算法}
+    \label{algo:policy-update}
+\end{algorithm}
 
 
-% 介绍普适性的元学习方法
-\section{针对小样本的元学习}
-对于小样本情形的机器学习，需要更高层次地设计，早期的一些工作从各个方面进行了研究。
-Vinyals等人\cite{vinyalsMatchingNetworksOne2016b}（2016年）设计了可以学习一个网络结构的框架，有效地提升了图像分类任务的少样本学习的准确率。
-Santoro 等人\cite{santoroMetaLearningMemoryAugmentedNeural2016}（2016年）设计了可以将过去的学习信息存储的增强记忆神经网络，该网络可以快速吸收新的数据，并利用此数据仅需几个样本就可以做出准确的预测。
-Finn等人提出的 MAML（2017年）\cite{finnModelagnosticMetalearningFast2017} 和后来提出更通用的版本 \cite{finnMetaLearningUniversalityDeep2018}（2018年），通过先验的优化求解过程寻找更加适合求解优化问题的初始参数。
-2017年 Duan 等人提出的 RL$^2$ 算法 \cite{duanRLFastReinforcement2016} 针对学习过程中实验次数过多问题，通过在代理的整个生命周期中展开LSTM，将学习本身描述为RL问题，从而利用过去的学习经验，减少在当前环境的训练次数。
-所有这些方法都没有明确区分智能体和算法，所以，这些元学习算法也适用于单个智能体的程序结构。
 
-% 单一环境任务下的元学习
-\section{针对单一任务的元学习}
-Xu等人\cite{xuMetagradientReinforcementLearning2018} （2018年）引入了元梯度RL方法；它使用反向传播遍历代理程序的更新，以计算相对于更新的元参数的梯度。
-该方法已应用于元学习各种形式的算法组件，例如折扣因子，内在奖励，辅助任务，回报，辅助策略更新等\cite{ohDiscoveringReinforcementLearning2020}。然而，本文的工作与该方法的侧重点不一样，类似于LPG \cite{ohDiscoveringReinforcementLearning2020}：发现对更广泛的智能体和环境类别有效的通用算法，而不是适应特定的环境。
+\section{元学习}
 
-\section{元强化学习算法}
-Houthooft 等人 在EPG \cite{houthooftEvolvedPolicyGradients2018} （2018年）使用进化策略来找到策略更新规则。
-郑等人 \cite{zhengWhatCanLearned2020}（2018）提出将奖励函数本身作为强化学习算法的表示的元学习框架，表明勘探的一般知识可以通过奖励函数的形式获得。
-但是，先前的工作最多只能将相同领域中的相似任务概括化。
-最近，提出了MetaGenRL \cite{kirschImprovingGeneralizationMeta2019} 来元学习领域不变的策略更新规则，该规则能够从几个MuJoCo环境推广到其他MuJoCo环境。
-然而很少有先前的工作试图发现完整的更新规则；取而代之的是，它们全都依赖于价值函数（可以说是RL的最基本构建块）进行引导。
-DeepMind公司在2020年提出的LPG元学习自举机制\cite{ohDiscoveringReinforcementLearning2020}，该论文尝试使用LSTM模型学习到一个强化学习算法，而不是使用手工的方式定义一个梯度策略更新规则。该方法在特定的环境下表现比经典的优势动作者-评论者（advantage actor-critick，A2C）算法 \cite{mnihAsynchronousMethodsDeep2016} 的表现要好。然而该算法过于激进，完全不考虑人类知识对算法的改进。本文类似于此方法，不同的是，本文的方法将融合A2C算法对智能体学习的指导作用。
+在进行元学习的训练时，将智能体放在不同类型的环境进行交互，然后更新元参数$\eta$，最后学习到一个策略更新规则。但是，这里不同类型的环境应该具有某些共性或者挑战，例如不能完全观测状态、长延迟收益和额外的干扰等，这也是自适应策略更新算法要弥补经典强化学习算法的关键地方。所以，环境分布 $p(\mathcal{E})$ 表示的是某一类具有相似挑战的环境。通过元学习得到的$\eta$应用于智能体与环境的交互中，就能将$\theta$更新到一个接近最优的取值。由于这里并没有将环境的状态作为输入，所以具有更好的泛化能力。
+
+具体来说，通过将智能体与环境交互，然后不断将$\theta$更新到接近最优的$\theta_N$。为了将$\theta$引导到使得智能体交互过程回报$G$最大的值，这里使用如下 \autoref{eq:meta-gradient} 计算的梯度进行梯度上升更新$\eta$的值：
+\begin{equation}
+    \Delta \eta  \varpropto \mathbb{E}_{\mathcal{E}} \mathbb{E}_{\theta_0} \left[ \nabla \ln \pi_{N} (a|s) G \right]
+    \label{eq:meta-gradient}
+\end{equation}
+其中，符号$y$隐含在$\pi$中，没有写出。这里是希望最后找到的$\eta$，它所代表的$\theta$更新方式能够使得智能体达到最优策略。其算法过程如\autoref{algo:meta-learning}所示。 在实践中，只要经过$K$步，就更新一次$\eta$。
+
+\begin{algorithm}[h!]
+    \KwIn{$p(\mathcal{E})$：环境的分布， $p(\theta_0)$：初始化参数的分布}
+    
+    初始化元参数 $\eta$
+    采样批量的环境和智能体的参数 $\{ \mathcal{E} \sim p(\mathcal{E}), \ \theta \sim p(\theta_0)\}_i$
+
+    \Repeat{$\eta$ 收敛} {
+        \ForEach{$\mathcal{E}, \theta$}{
+            使用参数 $\eta$ 更新 $\theta$ \\
+            利用 \autoref{eq:meta-gradient} 计算 $\eta$ 的累积梯度 \\
+            \If{生命周期结束} {
+                更新$\eta$的值 \\
+                重置环境 $\mathcal{E}$
+            }
+        }
+    }
+    \caption{元学习算法}
+    \label{algo:meta-learning}
+\end{algorithm}

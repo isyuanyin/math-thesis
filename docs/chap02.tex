@@ -5,7 +5,7 @@
 \chapter{背景知识}
 \label{cha:background-knowledge}
 
-强化学习是为了处理现实中的问题而提出的概念。Sutton 在自己的著作 \cite{suttonReinforcementLearningIntroduction2018}中，将强化学习问题抽象成马尔可夫决策过程（Markov Decision Program, MDP），这也是目前机器学习领域的共识 \cite{mnihHumanlevelControlDeep2015} \cite{mnihAsynchronousMethodsDeep2016} \cite{hesselRainbowCombiningImprovements2018}  ，本文也以此为基础介绍相关的概念和理论。这一章将从马尔可夫决策过程出发，解释强化学习的基本概念，以及介绍一些实践中遇到的问题及其经典的解决方法。
+强化学习是为了处理现实中的问题而提出的概念。Sutton 在强化学习专著 \cite{suttonReinforcementLearningIntroduction2018}中，将强化学习问题抽象成马尔可夫决策过程（Markov Decision Program, MDP），这也是目前机器学习领域的共识 \cite{mnihHumanlevelControlDeep2015} \cite{mnihAsynchronousMethodsDeep2016} \cite{hesselRainbowCombiningImprovements2018}  ，本文也以此为基础介绍相关的概念和理论。这一章将从马尔可夫决策过程出发，解释强化学习的基本概念，以及介绍一些实践中遇到的问题及其经典的解决方法。
 
 \section{基本概念}
 \subsection{马尔可夫决策过程}
@@ -33,23 +33,6 @@
             \pi(a|s) = \mathbb{P} [A_t = a | S_t = s]
         \end{split}
 \end{equation}
-
-% 上述的模型可以导出一些更加直观的结论，
-% \begin{itemize}
-%     \item 状态转移概率：
-%     \begin{equation}
-%         p(s'|s, a) = \mathcal{P}[S_{t+1} = s' | S_{t} = s, A_{t} = a] = \sum_{r\in \mathcal{R}} p(s', r|s, a)
-%     \end{equation}
-%     \item “状态-动作”的期望奖励：
-%     \begin{equation}
-%         r(s, a) = \mathbb{E} [R_{t+1} | S_{t} = s, A_{t} = a] = \sum_{r\in \mathcal{R}} r \sum_{s' \in \mathcal{S}} p(s', r | s, a)
-%     \end{equation}
-%     \item “状态-动作-状态”的期望奖励：
-%     \begin{equation}
-%         r(s, a, s') = \mathbb{E} [R_{t+1} | S_{t} = s, A_{t-1} = a] = \sum_{r\in \mathcal{R}} r p(s', r | s, a)
-%     \end{equation}
-% \end{itemize}
-
 
 \subsection{回报、折扣和值函数}
 强化学习的目标是最大化累积的奖励，用回报（return）表示累积的奖励，则从 $t$ 时刻之后的回报 $G_t$ 定义为：
@@ -105,7 +88,7 @@
 类似地，方程 \ref{eq:bellman-equation} 也可以利用迭代的方式计算，并且得到一个最优策略，这种方式称为价值迭代方法。
 
 \subsection{时序差分学习}
-在实践中，通常是无法知道条件概率 $p(r, s' | a, s)$，但可以通过智能体与环境交互（采样）获得若干个如序列 \ref{eq:mdp-sequence} 的样本。假设 $V$ 是 $v_\pi$ 的估计，函数$Q(S_t, A_t)$是 $q_\pi$ 的估计。我们可以通过利用采样得到的序列，使用如下算法迭代更新 $Q$ 函数
+在实践中，通常是无法知道条件概率 $p(s', r | a, s)$，但可以通过智能体与环境交互（采样）获得若干个如序列 \ref{eq:mdp-sequence} 的样本。假设 $V$ 是 $v_\pi$ 的估计，函数$Q(S_t, A_t)$是 $q_\pi$ 的估计。我们可以通过利用采样得到的序列，使用如下算法迭代更新 $Q$ 函数
 \begin{equation}
     Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \left[ R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t) \right]
 \end{equation}
