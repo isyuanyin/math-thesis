@@ -33,13 +33,12 @@
 \end{figure}
 
 
-\subsection{实验细节}
+\subsection{实现细节}
 
-
-本文使用了20维预测向量$y \in \mathcal{R}^{20}$。 在元训练期间，本实验在智能体每交互20步更新一次智能体参数，前面所提到的A2C算法在交互没有停止的时候也是利用20步A2C算法。由于大多数情况训练的情节跨越20-2000步，因此元学习必须为预测向量$y$发现长期语义，以便能够最大化来自部分轨迹的长期未来回报。该算法是使用深度学习框架 pytorch \cite{paszkePytorchImperativeStyle2019} 以及Bsuite的相关工具实现的。
+本文使用了20维预测向量$y \in \mathcal{R}^{20}$。 在元训练期间，本实验在智能体每交互20步更新一次智能体参数，前面所提到的A2C算法在交互没有停止的时候也是利用20步A2C算法。由于大多数情况训练的情节跨越20-2000步，因此元学习必须为预测向量$y$发现长期语义，以便能够最大化来自部分轨迹的长期未来回报。LSTM使用的是两层的多层感知机（MLP）。该算法是使用深度学习框架 pytorch \cite{paszkePytorchImperativeStyle2019} 以及Bsuite的相关工具实现的。
 
 \section{实验结果}
-在对不同环境进行元训练前，先对一个简单的网格世界重复进行元训练，然后在它上面进行智能体策略更新，其结果如\autoref{fig:simple-result}所示。其中的20维的预测向量在最后的取值 \autoref{fig:prediction} 所示，里面的不同颜色代表不同大小的取值，每一维对应状态的值打印网格世界的对应位置上。从该图中不能直接看出$y$的效果，这也是未来工作需要解决的地方，即找到一种能够解释$y$的模型。
+在对不同环境进行元训练前，先对一个简单的网格世界重复进行元训练，然后在它上面进行智能体策略更新，其结果如\autoref{fig:simple-result}所示。其中的20维的预测向量在最后的取值 \autoref{fig:prediction} 所示，里面的不同颜色代表不同大小的取值，每一维对应状态的值打印网格世界的对应位置上。从该图中不能直接看出$y$的效果，但是可以察觉有点像是状态-价值函数。这也是未来工作需要解决的地方，即找到一种能够解释$y$的模型。
 
 \begin{figure}[h!]
     \centering
@@ -72,7 +71,7 @@
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1\textwidth]{image/chap04/tabular.png}
+    \includegraphics[width=\textwidth]{image/chap04/tabular.png}
     \caption{网格世界的实验结果}
     \label{fig:tabular}
 \end{figure}

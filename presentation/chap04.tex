@@ -3,63 +3,81 @@
 {
 	\frametitle{\secname~ }
 	\begin{block}{环境配置}
-	\end{block}
-	\begin{block}{实现细节}
+		搭建的训练环境、实现的一些细节
 	\end{block}
 	\begin{block}{实验结果}
+		实验结果和分析
 	\end{block}
 }
 
 \subsection*{环境配置}
 \frame{
-	\frametitle{网格世界}
-	\vspace{-0.8em}
-	\footnotesize
-	\begin{block}{图像预处理}
-		\vspace{-0.5em}
+	\frametitle{训练环境}
+	\vspace{-1em}
+	\begin{block}{}
+		\small
+		本文利用 Bsuite 强化学习工具套件，实现了一篇文献\footnote{Oh \& Junhyuk, Discovering {{Reinforcement Learning Algorithms}}, NeurIPS 2020}中设计的表格型网格世界环境。
+	\end{block}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[height=0.4\textheight ]{image/chap04/simple_grid_world.pdf}
+		\caption{网格世界}
+		\label{fig:simple-gridworld}
+	\end{figure}
+	
+}
+\frame{
+	\frametitle{实现细节}
+	\begin{block}{}
 		\begin{itemize}
-			\item 训练时图像均缩放为321*321
-			\item 随机选取训练图像，随机取镜像,数据白化
+			\item 使用20维预测向量$y \in \mathcal{R}^{20}$
+			\item 每20步更新一次
+			\item LSTM使用两层的MLP
+			\item 使用 pytorch 和 Bsuite 实现算法
 		\end{itemize}
 	\end{block}
 }
 
+\subsection*{实验结果}
 \frame{
-	\frametitle{准确率度量方式}
-	\begin{block}{}
-		设$n_{ij}$为真实值属于类别$i$但被分类为类别$j$的像素个数，$n_{cl}$表示有多少种不同的标签，$t_i=\sum_{j=1}^{n_{cl}}n_{ij}$为所有真实值为类别$i$的像素个数。
-		\begin{align}
-			\begin{split}
-				\mbox{像素准确率} &= \sum_{i=1}^{n_{cl}}n_{ii} / \sum_{i=1}^{n_{cl}}t_i \\
-				\mbox{平均像素准确率} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}(n_{ii}/ t_i) \\
-				\mbox{Mean IU} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}\frac{n_{ii}}{t_i + \sum_j^{n_{cl}} n_{ji} - n_{ii}}
-			\end{split}
-		\end{align}
-	\end{block}
+	\frametitle{实验结果}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/0.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/1.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/2.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/3.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/4.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/5.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/6.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/7.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/8.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/9.png}
+		\\
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/10.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/11.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/12.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/13.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/14.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/15.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/16.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/17.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/18.png}
+		\includegraphics[width=0.09\textwidth]{image/chap04/prediction/19.png}
+		\caption{预测向量}
+		\label{fig:prediction}
+	\end{figure}
 }
 
-\subsection*{SIFT FLOW实验结果}
+
 \frame{
-	\frametitle{SIFT FLOW实验结果}
-	\begin{table}[h] %voc table result
+	\frametitle{实验结果}
+	\begin{figure}[h!]
 		\centering
-		\resizebox{0.8\textwidth}{!}{
-			\begin{tabular}{*{4}{c}}
-				\toprule
-				Method                                                                                                                 & Pixel Acc.    & Mean Acc.     & Mean IU.      \\
-				\midrule
-				Liu et al.\footnote{Sift flow: Dense correspondence across scenes and its applications, PAMI 2011}                     & 76.7          & -             & -             \\
-				Tighe et al.\footnote{Finding things: Image parsing with regions and per-exemplar detectors, CVPR 2013}                & 78.6          & 39.2          & -             \\
-				FCN-16s\footnote{Fully convolutional networks for semantic segmentation, CVPR 2015}                                    & 85.2          & \textbf{51.7} & 39.5          \\
-				Deeplab-LargeFOV\footnote{emantic image segmentation with deep convolutional nets and fully connected crfs, ICLR 2015} & 85.6          & 51.2          & 39.7          \\
-				\midrule
-				Grid-5LSTM                                                                                                             & \textbf{86.2} & 51.0          & \textbf{41.2} \\
-				\bottomrule
-			\end{tabular}
-		}
-		\caption[模型在SIFT FLOW上的结果]{模型在SIFT FLOW上的结果。Tighe等人的方法是用SVM+MRF，Deeplab-LargeFOV的结果是通过公开的源码实验得到的}
-		\label{tab:siftflow}
-	\end{table}
+		\includegraphics[width=1\textwidth]{image/chap04/tabular.png}
+		\caption{网格世界的实验结果}
+		\label{fig:tabular}
+	\end{figure}
 }
 
 \endinput
